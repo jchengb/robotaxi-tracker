@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import axios from 'axios';
+import { MongoClient } from 'mongodb';
 import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'fs';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
@@ -24,10 +25,64 @@ function saveJSON(path, data) {
   writeFileSync(path, JSON.stringify(data, null, 2));
 }
 
-// Seed synthetic history so the chart isn't empty on first run.
-// Growth curve from ~6 to 22 unsupervised over 60 days.
+// ─── MongoDB ────────────────────────────────────────────────
+// If MONGODB_URI is set, history is persisted in Atlas.
+// Otherwise falls back to local history.json (local dev).
+let historyCollection = null;
+
+async function connectMongo() {
+  const uri = process.env.MONGODB_URI;
+  if (!uri) {
+    console.log('[mongo] No MONGODB_URI set — using local history.json');
+    return;
+  }
+  try {
+    const client = new MongoClient(uri);
+    await client.connect();
+    const db = client.db('robotaxi');
+    historyCollection = db.collection('history');
+    await historyCollection.createIndex({ date: 1 }, { unique: true });
+    console.log('[mongo] Connected to MongoDB Atlas');
+  } catch (e) {
+    console.error('[mongo] Connection failed:', e.message);
+  }
+}
+
+async function loadHistory() {
+  if (historyCollection) {
+    const docs = await historyCollection
+      .find({}, { projection: { _id: 0 } })
+      .sort({ date: 1 })
+      .toArray();
+    if (docs.length > 0) return docs;
+  }
+  return loadJSON(HISTORY_FILE, null) ?? buildSyntheticHistory();
+}
+
+async function saveHistoryPoint(point) {
+  if (historyCollection) {
+    await historyCollection.updateOne(
+      { date: point.date },
+      { $set: point },
+      { upsert: true }
+    );
+    // Keep only last 365 days in Atlas
+    const cutoff = new Date();
+    cutoff.setDate(cutoff.getDate() - 365);
+    await historyCollection.deleteMany({ date: { $lt: cutoff.toISOString().split('T')[0] } });
+  } else {
+    // Fallback: update in-memory array and write to JSON
+    const idx = history.findIndex((h) => h.date === point.date);
+    if (idx >= 0) history[idx] = point;
+    else history.push(point);
+    if (history.length > 365) history = history.slice(-365);
+    saveJSON(HISTORY_FILE, history);
+  }
+}
+
+// ─── Synthetic seed data ────────────────────────────────────
 function buildSyntheticHistory() {
-  const history = [];
+  const result = [];
   const now = new Date();
   for (let daysAgo = 60; daysAgo >= 1; daysAgo--) {
     const d = new Date(now);
@@ -36,18 +91,26 @@ function buildSyntheticHistory() {
     const base = Math.round(6 + progress * 16);
     const jitter = Math.floor(Math.random() * 3) - 1;
     const unsupervised = Math.max(1, base + jitter);
-    history.push({
+    result.push({
       date: d.toISOString().split('T')[0],
       unsupervised,
       riderVehicles: unsupervised + 5,
       cybercabs: Math.round(20 + progress * 22) + jitter,
     });
   }
-  return history;
+  return result;
 }
 
+// ─── Startup ────────────────────────────────────────────────
 let cache   = loadJSON(CACHE_FILE, null);
-let history = loadJSON(HISTORY_FILE, null) ?? buildSyntheticHistory();
+let history = [];
+
+async function init() {
+  await connectMongo();
+  history = await loadHistory();
+  refreshData();
+  setInterval(refreshData, REFRESH_MS);
+}
 
 async function refreshData() {
   console.log('[server] Refreshing data from robotaxitracker.com...');
@@ -56,7 +119,6 @@ async function refreshData() {
     cache = { ...scraped, lastUpdated: new Date().toISOString() };
     saveJSON(CACHE_FILE, cache);
 
-    // Upsert today's history point
     const today = new Date().toISOString().split('T')[0];
     const point = {
       date:          today,
@@ -64,11 +126,13 @@ async function refreshData() {
       riderVehicles: scraped.totals.riderVehicles,
       cybercabs:     scraped.totals.cybercabs,
     };
+
+    await saveHistoryPoint(point);
+
+    // Keep in-memory history in sync
     const idx = history.findIndex((h) => h.date === today);
     if (idx >= 0) history[idx] = point;
     else history.push(point);
-    if (history.length > 365) history = history.slice(-365);
-    saveJSON(HISTORY_FILE, history);
 
     console.log('[server] Data refreshed — totals:', scraped.totals);
   } catch (e) {
@@ -76,12 +140,10 @@ async function refreshData() {
   }
 }
 
-// First scrape + periodic refresh
-refreshData();
-setInterval(refreshData, REFRESH_MS);
+init();
 
 // ─── Tesla Stock (Yahoo Finance) ───────────────────────────
-const STOCK_TTL_MS = 5 * 60 * 1000; // cache 5 minutes
+const STOCK_TTL_MS = 5 * 60 * 1000;
 let stockCache = null;
 let stockFetchedAt = 0;
 
@@ -113,14 +175,11 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Serve the built React frontend
 const CLIENT_DIST = join(__dirname, '..', 'client', 'dist');
 app.use(express.static(CLIENT_DIST));
 
 app.get('/api/stats', (req, res) => {
-  if (!cache) {
-    return res.status(503).json({ error: 'Data loading, retry in a moment.' });
-  }
+  if (!cache) return res.status(503).json({ error: 'Data loading, retry in a moment.' });
   res.json({ current: cache, history });
 });
 
@@ -138,7 +197,6 @@ app.get('/api/stock', async (req, res) => {
   }
 });
 
-// Catch-all: serve the React app for any non-API route
 app.get('*', (req, res) => {
   res.sendFile(join(CLIENT_DIST, 'index.html'));
 });
