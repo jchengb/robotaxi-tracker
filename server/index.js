@@ -129,10 +129,8 @@ async function refreshData() {
 
     await saveHistoryPoint(point);
 
-    // Keep in-memory history in sync
-    const idx = history.findIndex((h) => h.date === today);
-    if (idx >= 0) history[idx] = point;
-    else history.push(point);
+    // Reload full history from MongoDB so in-memory is always in sync
+    history = await loadHistory();
 
     console.log('[server] Data refreshed — totals:', scraped.totals);
   } catch (e) {
