@@ -1,5 +1,6 @@
 import express from 'express';
 import cors from 'cors';
+import axios from 'axios';
 import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'fs';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
@@ -79,6 +80,34 @@ async function refreshData() {
 refreshData();
 setInterval(refreshData, REFRESH_MS);
 
+// ─── Tesla Stock (Yahoo Finance) ───────────────────────────
+const STOCK_TTL_MS = 5 * 60 * 1000; // cache 5 minutes
+let stockCache = null;
+let stockFetchedAt = 0;
+
+async function fetchStock() {
+  if (stockCache && Date.now() - stockFetchedAt < STOCK_TTL_MS) return stockCache;
+  const { data } = await axios.get(
+    'https://query1.finance.yahoo.com/v8/finance/chart/TSLA?interval=1d&range=3mo&includePrePost=false',
+    { headers: { 'User-Agent': 'Mozilla/5.0' }, timeout: 10000 }
+  );
+  const result = data.chart.result[0];
+  const meta   = result.meta;
+  const closes = result.indicators.quote[0].close;
+  const timestamps = result.timestamp;
+  stockCache = {
+    price:         meta.regularMarketPrice,
+    previousClose: meta.chartPreviousClose,
+    marketState:   meta.marketState,
+    history: timestamps
+      .map((t, i) => ({ date: new Date(t * 1000).toISOString().split('T')[0], close: closes[i] }))
+      .filter((h) => h.close != null),
+    lastUpdated: new Date().toISOString(),
+  };
+  stockFetchedAt = Date.now();
+  return stockCache;
+}
+
 // ─── Express ───────────────────────────────────────────────
 const app = express();
 app.use(cors());
@@ -98,6 +127,15 @@ app.get('/api/stats', (req, res) => {
 app.post('/api/refresh', async (req, res) => {
   await refreshData();
   res.json({ ok: true, lastUpdated: cache?.lastUpdated });
+});
+
+app.get('/api/stock', async (req, res) => {
+  try {
+    res.json(await fetchStock());
+  } catch (e) {
+    console.error('[server] Stock fetch error:', e.message);
+    res.status(503).json({ error: e.message });
+  }
 });
 
 // Catch-all: serve the React app for any non-API route

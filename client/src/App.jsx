@@ -4,6 +4,7 @@ import HeroCounter from './components/HeroCounter.jsx';
 import MetricCard from './components/MetricCard.jsx';
 import CityBreakdown from './components/CityBreakdown.jsx';
 import GrowthChart from './components/GrowthChart.jsx';
+import StockPrice from './components/StockPrice.jsx';
 
 const AUTO_REFRESH_MS = 60 * 1000; // 60 seconds
 
@@ -143,12 +144,11 @@ export default function App() {
               <CityBreakdown cities={cities} />
             </section>
 
-            {/* Historical Chart */}
-            {history?.length > 0 && (
-              <section className="animate-fade-in">
-                <GrowthChart history={history} />
-              </section>
-            )}
+            {/* Bottom row: stock + growth chart side by side on large screens */}
+            <section className="grid grid-cols-1 lg:grid-cols-2 gap-4 animate-fade-in">
+              <StockPrice />
+              {history?.length > 0 && <GrowthChart history={history} />}
+            </section>
 
             {/* Footer note */}
             <p className="text-center text-xs text-muted mt-10">
