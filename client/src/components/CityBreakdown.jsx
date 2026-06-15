@@ -35,13 +35,13 @@ function CityRow({ cityKey, data, maxUnsupervised }) {
 
       {/* Stats */}
       <div className="flex items-center gap-4 shrink-0 text-right">
-        <div className="w-14">
+        <div className="w-24 whitespace-nowrap">
           <span className="text-sm font-bold tabular-nums">
             {hasError ? '—' : (unsupervised || '—')}
           </span>
           <span className="text-xs text-muted ml-1">無監督</span>
         </div>
-        <div className="w-16 hidden sm:block">
+        <div className="w-20 hidden sm:block whitespace-nowrap">
           <span className="text-xs text-muted tabular-nums">
             {hasError ? '—' : (data.riderVehicles != null ? `${data.riderVehicles} 乘客車` : '—')}
           </span>
@@ -75,7 +75,7 @@ export default function CityBreakdown({ cities }) {
       <div className="flex items-center gap-4 pb-2 text-xs text-muted">
         <span className="w-28 shrink-0">城市</span>
         <span className="flex-1">車隊占比</span>
-        <span className="shrink-0 text-right w-14 mr-4 sm:mr-[4.5rem] md:mr-[7rem]">數量</span>
+        <span className="shrink-0 text-right w-24 mr-4 sm:mr-[6rem] md:mr-[9rem]">數量</span>
       </div>
 
       {entries.map(([key, data]) => (
