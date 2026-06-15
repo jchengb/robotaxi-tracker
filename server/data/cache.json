@@ -1,0 +1,52 @@
+{
+  "cities": {
+    "austin": {
+      "label": "Austin",
+      "riderVehicles": 27,
+      "unsupervised": 22,
+      "inactive": 77,
+      "cybercabs": 42,
+      "unsupervisedPercent": 75.8,
+      "unsupervisedRides": 25,
+      "totalRides": 33
+    },
+    "bayarea": {
+      "label": "Bay Area",
+      "riderVehicles": 27,
+      "unsupervised": 22,
+      "inactive": 77,
+      "cybercabs": 42,
+      "unsupervisedPercent": 75.8,
+      "unsupervisedRides": 25,
+      "totalRides": 33
+    },
+    "dallas": {
+      "label": "Dallas",
+      "riderVehicles": 96,
+      "unsupervised": 33,
+      "inactive": 636,
+      "cybercabs": 58,
+      "unsupervisedPercent": null,
+      "unsupervisedRides": null,
+      "totalRides": null
+    },
+    "houston": {
+      "label": "Houston",
+      "riderVehicles": 96,
+      "unsupervised": 33,
+      "inactive": 636,
+      "cybercabs": 58,
+      "unsupervisedPercent": null,
+      "unsupervisedRides": null,
+      "totalRides": null
+    }
+  },
+  "totals": {
+    "riderVehicles": 246,
+    "unsupervised": 110,
+    "inactive": 1426,
+    "cybercabs": 58,
+    "unsupervisedPercent": 75.8
+  },
+  "lastUpdated": "2026-06-15T06:08:37.528Z"
+}

@@ -1,0 +1,368 @@
+[
+  {
+    "date": "2026-04-16",
+    "unsupervised": 5,
+    "riderVehicles": 10,
+    "cybercabs": 19
+  },
+  {
+    "date": "2026-04-17",
+    "unsupervised": 7,
+    "riderVehicles": 12,
+    "cybercabs": 21
+  },
+  {
+    "date": "2026-04-18",
+    "unsupervised": 7,
+    "riderVehicles": 12,
+    "cybercabs": 21
+  },
+  {
+    "date": "2026-04-19",
+    "unsupervised": 8,
+    "riderVehicles": 13,
+    "cybercabs": 22
+  },
+  {
+    "date": "2026-04-20",
+    "unsupervised": 7,
+    "riderVehicles": 12,
+    "cybercabs": 21
+  },
+  {
+    "date": "2026-04-21",
+    "unsupervised": 8,
+    "riderVehicles": 13,
+    "cybercabs": 23
+  },
+  {
+    "date": "2026-04-22",
+    "unsupervised": 9,
+    "riderVehicles": 14,
+    "cybercabs": 23
+  },
+  {
+    "date": "2026-04-23",
+    "unsupervised": 9,
+    "riderVehicles": 14,
+    "cybercabs": 24
+  },
+  {
+    "date": "2026-04-24",
+    "unsupervised": 9,
+    "riderVehicles": 14,
+    "cybercabs": 24
+  },
+  {
+    "date": "2026-04-25",
+    "unsupervised": 7,
+    "riderVehicles": 12,
+    "cybercabs": 22
+  },
+  {
+    "date": "2026-04-26",
+    "unsupervised": 9,
+    "riderVehicles": 14,
+    "cybercabs": 24
+  },
+  {
+    "date": "2026-04-27",
+    "unsupervised": 10,
+    "riderVehicles": 15,
+    "cybercabs": 25
+  },
+  {
+    "date": "2026-04-28",
+    "unsupervised": 9,
+    "riderVehicles": 14,
+    "cybercabs": 24
+  },
+  {
+    "date": "2026-04-29",
+    "unsupervised": 11,
+    "riderVehicles": 16,
+    "cybercabs": 26
+  },
+  {
+    "date": "2026-04-30",
+    "unsupervised": 11,
+    "riderVehicles": 16,
+    "cybercabs": 26
+  },
+  {
+    "date": "2026-05-01",
+    "unsupervised": 10,
+    "riderVehicles": 15,
+    "cybercabs": 26
+  },
+  {
+    "date": "2026-05-02",
+    "unsupervised": 11,
+    "riderVehicles": 16,
+    "cybercabs": 27
+  },
+  {
+    "date": "2026-05-03",
+    "unsupervised": 10,
+    "riderVehicles": 15,
+    "cybercabs": 25
+  },
+  {
+    "date": "2026-05-04",
+    "unsupervised": 10,
+    "riderVehicles": 15,
+    "cybercabs": 26
+  },
+  {
+    "date": "2026-05-05",
+    "unsupervised": 12,
+    "riderVehicles": 17,
+    "cybercabs": 28
+  },
+  {
+    "date": "2026-05-06",
+    "unsupervised": 12,
+    "riderVehicles": 17,
+    "cybercabs": 28
+  },
+  {
+    "date": "2026-05-07",
+    "unsupervised": 11,
+    "riderVehicles": 16,
+    "cybercabs": 27
+  },
+  {
+    "date": "2026-05-08",
+    "unsupervised": 11,
+    "riderVehicles": 16,
+    "cybercabs": 27
+  },
+  {
+    "date": "2026-05-09",
+    "unsupervised": 13,
+    "riderVehicles": 18,
+    "cybercabs": 30
+  },
+  {
+    "date": "2026-05-10",
+    "unsupervised": 14,
+    "riderVehicles": 19,
+    "cybercabs": 30
+  },
+  {
+    "date": "2026-05-11",
+    "unsupervised": 14,
+    "riderVehicles": 19,
+    "cybercabs": 30
+  },
+  {
+    "date": "2026-05-12",
+    "unsupervised": 14,
+    "riderVehicles": 19,
+    "cybercabs": 31
+  },
+  {
+    "date": "2026-05-13",
+    "unsupervised": 12,
+    "riderVehicles": 17,
+    "cybercabs": 29
+  },
+  {
+    "date": "2026-05-14",
+    "unsupervised": 15,
+    "riderVehicles": 20,
+    "cybercabs": 31
+  },
+  {
+    "date": "2026-05-15",
+    "unsupervised": 15,
+    "riderVehicles": 20,
+    "cybercabs": 32
+  },
+  {
+    "date": "2026-05-16",
+    "unsupervised": 13,
+    "riderVehicles": 18,
+    "cybercabs": 30
+  },
+  {
+    "date": "2026-05-17",
+    "unsupervised": 14,
+    "riderVehicles": 19,
+    "cybercabs": 32
+  },
+  {
+    "date": "2026-05-18",
+    "unsupervised": 16,
+    "riderVehicles": 21,
+    "cybercabs": 33
+  },
+  {
+    "date": "2026-05-19",
+    "unsupervised": 15,
+    "riderVehicles": 20,
+    "cybercabs": 32
+  },
+  {
+    "date": "2026-05-20",
+    "unsupervised": 15,
+    "riderVehicles": 20,
+    "cybercabs": 33
+  },
+  {
+    "date": "2026-05-21",
+    "unsupervised": 15,
+    "riderVehicles": 20,
+    "cybercabs": 33
+  },
+  {
+    "date": "2026-05-22",
+    "unsupervised": 15,
+    "riderVehicles": 20,
+    "cybercabs": 32
+  },
+  {
+    "date": "2026-05-23",
+    "unsupervised": 17,
+    "riderVehicles": 22,
+    "cybercabs": 35
+  },
+  {
+    "date": "2026-05-24",
+    "unsupervised": 15,
+    "riderVehicles": 20,
+    "cybercabs": 33
+  },
+  {
+    "date": "2026-05-25",
+    "unsupervised": 18,
+    "riderVehicles": 23,
+    "cybercabs": 36
+  },
+  {
+    "date": "2026-05-26",
+    "unsupervised": 17,
+    "riderVehicles": 22,
+    "cybercabs": 35
+  },
+  {
+    "date": "2026-05-27",
+    "unsupervised": 17,
+    "riderVehicles": 22,
+    "cybercabs": 35
+  },
+  {
+    "date": "2026-05-28",
+    "unsupervised": 17,
+    "riderVehicles": 22,
+    "cybercabs": 36
+  },
+  {
+    "date": "2026-05-29",
+    "unsupervised": 17,
+    "riderVehicles": 22,
+    "cybercabs": 35
+  },
+  {
+    "date": "2026-05-30",
+    "unsupervised": 19,
+    "riderVehicles": 24,
+    "cybercabs": 37
+  },
+  {
+    "date": "2026-05-31",
+    "unsupervised": 19,
+    "riderVehicles": 24,
+    "cybercabs": 38
+  },
+  {
+    "date": "2026-06-01",
+    "unsupervised": 19,
+    "riderVehicles": 24,
+    "cybercabs": 38
+  },
+  {
+    "date": "2026-06-02",
+    "unsupervised": 19,
+    "riderVehicles": 24,
+    "cybercabs": 38
+  },
+  {
+    "date": "2026-06-03",
+    "unsupervised": 20,
+    "riderVehicles": 25,
+    "cybercabs": 39
+  },
+  {
+    "date": "2026-06-04",
+    "unsupervised": 20,
+    "riderVehicles": 25,
+    "cybercabs": 39
+  },
+  {
+    "date": "2026-06-05",
+    "unsupervised": 19,
+    "riderVehicles": 24,
+    "cybercabs": 38
+  },
+  {
+    "date": "2026-06-06",
+    "unsupervised": 20,
+    "riderVehicles": 25,
+    "cybercabs": 39
+  },
+  {
+    "date": "2026-06-07",
+    "unsupervised": 21,
+    "riderVehicles": 26,
+    "cybercabs": 40
+  },
+  {
+    "date": "2026-06-08",
+    "unsupervised": 21,
+    "riderVehicles": 26,
+    "cybercabs": 41
+  },
+  {
+    "date": "2026-06-09",
+    "unsupervised": 22,
+    "riderVehicles": 27,
+    "cybercabs": 41
+  },
+  {
+    "date": "2026-06-10",
+    "unsupervised": 22,
+    "riderVehicles": 27,
+    "cybercabs": 42
+  },
+  {
+    "date": "2026-06-11",
+    "unsupervised": 21,
+    "riderVehicles": 26,
+    "cybercabs": 41
+  },
+  {
+    "date": "2026-06-12",
+    "unsupervised": 22,
+    "riderVehicles": 27,
+    "cybercabs": 42
+  },
+  {
+    "date": "2026-06-13",
+    "unsupervised": 22,
+    "riderVehicles": 27,
+    "cybercabs": 42
+  },
+  {
+    "date": "2026-06-14",
+    "unsupervised": 23,
+    "riderVehicles": 28,
+    "cybercabs": 43
+  },
+  {
+    "date": "2026-06-15",
+    "unsupervised": 110,
+    "riderVehicles": 246,
+    "cybercabs": 58
+  }
+]
