@@ -50,7 +50,7 @@ export default function GrowthChart({ history }) {
     labels,
     datasets: [
       {
-        label: 'Unsupervised Vehicles',
+        label: '無人監督車輛',
         data: filtered.map((h) => h.unsupervised),
         borderColor: 'rgba(227, 25, 55, 1)',
         backgroundColor: (ctx) => makeGradient(ctx.chart.ctx, 'rgba(227, 25, 55, 1)'),
@@ -64,7 +64,7 @@ export default function GrowthChart({ history }) {
         pointBorderWidth: 2,
       },
       {
-        label: 'Rider Vehicles',
+        label: '乘客車輛',
         data: filtered.map((h) => h.riderVehicles),
         borderColor: 'rgba(99, 102, 241, 1)',
         backgroundColor: (ctx) => makeGradient(ctx.chart.ctx, 'rgba(99, 102, 241, 1)'),
@@ -141,8 +141,8 @@ export default function GrowthChart({ history }) {
     <div className="card">
       <div className="flex items-center justify-between mb-5">
         <div>
-          <h2 className="label-text mb-0.5">Fleet Growth</h2>
-          <p className="text-xs text-muted">Unsupervised &amp; rider vehicles over time</p>
+          <h2 className="label-text mb-0.5">車隊成長趨勢</h2>
+          <p className="text-xs text-muted">無人監督及乘客車輛的歷史變化</p>
         </div>
         <div className="flex items-center gap-1 bg-surface rounded-lg p-1 border border-border">
           {RANGE_OPTIONS.map((opt) => (
@@ -165,7 +165,7 @@ export default function GrowthChart({ history }) {
           <Line data={data} options={options} />
         ) : (
           <div className="h-full flex items-center justify-center text-muted text-sm">
-            No data for selected range
+            所選時間範圍內無資料
           </div>
         )}
       </div>

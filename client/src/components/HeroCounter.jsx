@@ -30,7 +30,7 @@ export default function HeroCounter({ unsupervised, unsupervisedPercent, totalRi
       {/* Live badge */}
       <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-accent/30 bg-accent/10 mb-6">
         <span className="live-dot w-2 h-2 rounded-full bg-accent" />
-        <span className="text-xs font-semibold text-accent uppercase tracking-widest">Live</span>
+        <span className="text-xs font-semibold text-accent uppercase tracking-widest">即時</span>
       </div>
 
       {/* Big number */}
@@ -39,10 +39,10 @@ export default function HeroCounter({ unsupervised, unsupervisedPercent, totalRi
       </div>
 
       <p className="text-xl sm:text-2xl font-semibold text-white/90 tracking-tight mb-1">
-        Unsupervised Vehicles
+        無人監督車輛數
       </p>
       <p className="text-sm text-muted mb-6">
-        Tesla robotaxis operating without a safety driver right now
+        目前正在無安全駕駛員情況下行駛的 Tesla 機器人計程車
       </p>
 
       {/* Sub-stats pill row */}
@@ -51,7 +51,7 @@ export default function HeroCounter({ unsupervised, unsupervisedPercent, totalRi
           {unsupervisedPercent != null && (
             <div className="flex items-center gap-2">
               <span className="text-accent font-bold">{unsupervisedPercent}%</span>
-              <span className="text-muted">unsupervised (7d)</span>
+              <span className="text-muted">無人監督（7天）</span>
             </div>
           )}
           {unsupervisedPercent != null && totalRides != null && (
@@ -60,7 +60,7 @@ export default function HeroCounter({ unsupervised, unsupervisedPercent, totalRi
           {totalRides != null && (
             <div className="flex items-center gap-2">
               <span className="text-white font-bold">{totalRides}</span>
-              <span className="text-muted">rides (7d)</span>
+              <span className="text-muted">趟次（7天）</span>
             </div>
           )}
         </div>

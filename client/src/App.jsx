@@ -82,7 +82,7 @@ export default function App() {
           <div className="flex items-center justify-center py-32 text-muted">
             <div className="flex flex-col items-center gap-4">
               <div className="w-8 h-8 border-2 border-accent border-t-transparent rounded-full animate-spin" />
-              <p className="text-sm">Loading live data…</p>
+              <p className="text-sm">載入即時資料中…</p>
             </div>
           </div>
         )}
@@ -91,9 +91,9 @@ export default function App() {
         {!isLoading && error && !data && (
           <div className="flex items-center justify-center py-32">
             <div className="card text-center max-w-md">
-              <p className="text-accent font-semibold mb-2">Could not load data</p>
+              <p className="text-accent font-semibold mb-2">無法載入資料</p>
               <p className="text-sm text-muted">{error}</p>
-              <p className="text-xs text-muted mt-3">Make sure the backend server is running on port 3001.</p>
+              <p className="text-xs text-muted mt-3">請確認後端伺服器正在 3001 埠運行。</p>
             </div>
           </div>
         )}
@@ -110,30 +110,30 @@ export default function App() {
             {/* Metric Cards */}
             <section className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6 animate-fade-in">
               <MetricCard
-                label="Rider Vehicles"
+                label="乘客車輛"
                 value={totals?.riderVehicles}
                 icon="🚗"
-                sublabel="Active Tesla rider fleet"
+                sublabel="活躍中的 Tesla 載客車隊"
               />
               <MetricCard
-                label="Inactive (30d)"
+                label="閒置（30天）"
                 value={totals?.inactive}
                 icon="💤"
-                sublabel="Vehicles not seen in 30 days"
+                sublabel="30 天內未出現的車輛"
               />
               <MetricCard
-                label="Cybercabs"
+                label="Cybercab"
                 value={totals?.cybercabs}
                 icon="⚡"
-                sublabel="Cybercab test fleet vehicles"
+                sublabel="Cybercab 測試車隊數量"
                 accent
               />
               <MetricCard
-                label="Unsupervised %"
+                label="無人監督比例"
                 value={totals?.unsupervisedPercent ?? austin?.unsupervisedPercent}
                 unit="%"
                 icon="🤖"
-                sublabel="Rides without safety driver (7d)"
+                sublabel="無安全駕駛員的趟次比例（7天）"
                 accent
               />
             </section>
@@ -152,7 +152,7 @@ export default function App() {
 
             {/* Footer note */}
             <p className="text-center text-xs text-muted mt-10">
-              Data sourced from{' '}
+              資料來源：{' '}
               <a
                 href="https://robotaxitracker.com"
                 target="_blank"
@@ -161,7 +161,7 @@ export default function App() {
               >
                 robotaxitracker.com
               </a>
-              {' '}· refreshes every 10 minutes · not affiliated with Tesla
+              {' '}· 每 10 分鐘更新 · 與 Tesla 無關聯
             </p>
           </>
         )}

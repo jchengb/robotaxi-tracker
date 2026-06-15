@@ -39,11 +39,11 @@ function CityRow({ cityKey, data, maxUnsupervised }) {
           <span className="text-sm font-bold tabular-nums">
             {hasError ? '—' : (unsupervised || '—')}
           </span>
-          <span className="text-xs text-muted ml-1">unsupr.</span>
+          <span className="text-xs text-muted ml-1">無監督</span>
         </div>
         <div className="w-16 hidden sm:block">
           <span className="text-xs text-muted tabular-nums">
-            {hasError ? '—' : (data.riderVehicles != null ? `${data.riderVehicles} rider` : '—')}
+            {hasError ? '—' : (data.riderVehicles != null ? `${data.riderVehicles} 乘客車` : '—')}
           </span>
         </div>
         {data.unsupervisedPercent != null && (
@@ -67,15 +67,15 @@ export default function CityBreakdown({ cities }) {
   return (
     <div className="card">
       <div className="flex items-center justify-between mb-4">
-        <h2 className="label-text">City Breakdown</h2>
-        <span className="text-xs text-muted">Tesla · Unsupervised</span>
+        <h2 className="label-text">各城市分布</h2>
+        <span className="text-xs text-muted">Tesla · 無人監督</span>
       </div>
 
       {/* Column headers */}
       <div className="flex items-center gap-4 pb-2 text-xs text-muted">
-        <span className="w-28 shrink-0">City</span>
-        <span className="flex-1">Fleet share</span>
-        <span className="shrink-0 text-right w-14 mr-4 sm:mr-[4.5rem] md:mr-[7rem]">Count</span>
+        <span className="w-28 shrink-0">城市</span>
+        <span className="flex-1">車隊占比</span>
+        <span className="shrink-0 text-right w-14 mr-4 sm:mr-[4.5rem] md:mr-[7rem]">數量</span>
       </div>
 
       {entries.map(([key, data]) => (

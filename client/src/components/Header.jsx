@@ -4,9 +4,9 @@ export default function Header({ lastUpdated, onRefresh, isRefreshing }) {
   const ago = React.useMemo(() => {
     if (!lastUpdated) return null;
     const diff = Math.floor((Date.now() - new Date(lastUpdated)) / 1000);
-    if (diff < 60)   return `${diff}s ago`;
-    if (diff < 3600) return `${Math.floor(diff / 60)}m ago`;
-    return `${Math.floor(diff / 3600)}h ago`;
+    if (diff < 60)   return `${diff} 秒前`;
+    if (diff < 3600) return `${Math.floor(diff / 60)} 分鐘前`;
+    return `${Math.floor(diff / 3600)} 小時前`;
   }, [lastUpdated]);
 
   return (
@@ -21,10 +21,10 @@ export default function Header({ lastUpdated, onRefresh, isRefreshing }) {
           </div>
           <div>
             <h1 className="text-base font-bold leading-tight tracking-tight">
-              Robotaxi Unsupervised Tracker
+              機器人計程車無人駕駛追蹤器
             </h1>
             <p className="text-xs text-muted hidden sm:block">
-              Tesla FSD / Cybercab · Austin · Bay Area · Dallas · Houston
+              Tesla FSD / Cybercab · 奧斯汀 · 灣區 · 達拉斯 · 休士頓
             </p>
           </div>
         </div>
@@ -33,7 +33,7 @@ export default function Header({ lastUpdated, onRefresh, isRefreshing }) {
           {ago && (
             <span className="text-xs text-muted hidden sm:flex items-center gap-1.5">
               <span className="live-dot w-1.5 h-1.5 rounded-full bg-green-400 inline-block" />
-              Updated {ago}
+              更新於 {ago}
             </span>
           )}
           <button
@@ -49,7 +49,7 @@ export default function Header({ lastUpdated, onRefresh, isRefreshing }) {
               <path d="M4 4v5h5M20 20v-5h-5" strokeLinecap="round" strokeLinejoin="round" />
               <path d="M4 9a9 9 0 0 1 15-4.5M20 15a9 9 0 0 1-15 4.5" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
-            {isRefreshing ? 'Refreshing…' : 'Refresh'}
+            {isRefreshing ? '更新中…' : '重新整理'}
           </button>
         </div>
       </div>
